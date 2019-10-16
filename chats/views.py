@@ -1,14 +1,29 @@
-# from django.shortcuts import render
-#
-# # Create your views here.
-# class ChatDetailView(generic.DetailView):
-#     model = Chat
-#
-#     def add_comment(request, pk):
-#         comment = Comment()
-#         # you need to make this line dynamic
-#         comment.text = 'hello'
-#         comment.chat_id = pk
-#         comment.save()
-#         return HttpResponseRedirect(reverse('chats:chat_detail', args=(pk,)))
-# `
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views import generic
+
+from .models import Chat, Comment, Thread
+
+class ChatListView(generic.ListView):
+    model = Chat
+
+class ChatDetailView(generic.DetailView):
+    model = Chat
+
+class CommentCreateView(generic.CreateView):
+    model = Comment
+    fields = ('text',)
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        form.instance.chat_id = self.kwargs['pk']
+        return super().form_valid(form)
+
+class NewThreadView(generic.CreateView):
+    model = Thread
+    fields = ('text',)
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        form.instance.chat_id = self.kwargs['pk']
+        return super().form_valid(form)
