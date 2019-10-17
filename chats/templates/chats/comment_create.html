@@ -1,3 +1,5 @@
+{% extends 'chats/base.html' %}
+{% block content %}
 <form method='post'>
   {% csrf_token %}
   <table>
@@ -6,3 +8,4 @@
   </table>
   <button>Submit</button>
 </form>
+{% endblock content %}

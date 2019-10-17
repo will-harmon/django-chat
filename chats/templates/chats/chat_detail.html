@@ -1,3 +1,5 @@
+{% extends 'chats/base.html' %}
+{% block content %}
 <div>{{object.name}}</div>
 
 <form action="{% url 'chats:add_comment' object.id %}" method="post">
@@ -10,3 +12,4 @@
 <div>{{comment.text}}</div>
 <span>{{comment.created_by}}</span>
 {% endfor %}
+{% endblock content %}

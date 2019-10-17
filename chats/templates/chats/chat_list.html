@@ -1,7 +1,7 @@
-
+{% extends 'chats/base.html' %}
 
 {% block content %}
-<h1>hey</h1>
+<h1>Discussions</h1>
 {% for chat in object_list %}
 <form>
   {% csrf_token %}
