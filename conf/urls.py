@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('chats.urls', namespace='chats')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('media', include('media.urls', namespace='media')),
     path('admin/', admin.site.urls),
 ]
 

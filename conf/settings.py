@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # local
     'accounts.apps.AccountsConfig',
     'chats.apps.ChatsConfig',
+    'media',
 ]
 
 MIDDLEWARE = [
