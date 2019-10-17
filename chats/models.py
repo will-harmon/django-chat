@@ -5,7 +5,9 @@ from django.urls import reverse
 User = get_user_model()
 
 class Chat(models.Model):
-    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=120)
+    text = models.TextField()
+    
 
     def __str__(self):
         return self.name

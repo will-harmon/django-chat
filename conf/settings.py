@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     # local
     'accounts.apps.AccountsConfig',
     'chats.apps.ChatsConfig',
-    'media',
 ]
 
 MIDDLEWARE = [
@@ -141,4 +140,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECTION_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'

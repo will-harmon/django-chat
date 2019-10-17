@@ -1,16 +1,20 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 
 from .models import Chat, Comment, Thread
 
-class ChatListView(generic.ListView):
+class ChatListView(LoginRequiredMixin, generic.ListView):
+    model = Chat
+    # form.instance.created_by = self.request.user
+    # form.instance.chat_id = self.kwargs['pk']
+    # return super().form_valid(form)
+
+class ChatDetailView(LoginRequiredMixin, generic.DetailView):
     model = Chat
 
-class ChatDetailView(generic.DetailView):
-    model = Chat
-
-class CommentCreateView(generic.CreateView):
+class CommentCreateView(LoginRequiredMixin, generic.CreateView):
     model = Comment
     fields = ('text',)
 
@@ -19,7 +23,7 @@ class CommentCreateView(generic.CreateView):
         form.instance.chat_id = self.kwargs['pk']
         return super().form_valid(form)
 
-class NewThreadView(generic.CreateView):
+class NewThreadView(LoginRequiredMixin, generic.CreateView):
     model = Thread
     fields = ('text',)
 

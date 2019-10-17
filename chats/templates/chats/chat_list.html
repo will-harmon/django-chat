@@ -1,6 +1,8 @@
 
-<ul>
-{% for chat in object_list %}
-<li><a href="{% url 'chats:chat_detail' chat.id %}">{{chat.name}}</a></li>
-{% endfor %}
-</ul>
+
+{% block content %}
+  <h1>Chat List</h1>
+  <div>  </div>
+  <h3><a href="{{ chat.get_absolute_url }}">{{ chat.title }}</a></h3>
+  <p>{{ chat.text }}</p>
+{% endblock content %}
