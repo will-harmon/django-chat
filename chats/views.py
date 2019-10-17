@@ -3,18 +3,16 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 
-from .models import Chat, Comment, Thread
+from .models import Chat, Comment
 
-class ChatListView(LoginRequiredMixin, generic.ListView):
+class ChatListView(generic.ListView):
     model = Chat
-    # form.instance.created_by = self.request.user
-    # form.instance.chat_id = self.kwargs['pk']
-    # return super().form_valid(form)
+    template_name = 'chats/chat_list.html'
 
-class ChatDetailView(LoginRequiredMixin, generic.DetailView):
+class ChatDetailView(generic.DetailView):
     model = Chat
 
-class CommentCreateView(LoginRequiredMixin, generic.CreateView):
+class CommentCreateView(generic.CreateView):
     model = Comment
     fields = ('text',)
 
@@ -23,11 +21,10 @@ class CommentCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.chat_id = self.kwargs['pk']
         return super().form_valid(form)
 
-class NewThreadView(LoginRequiredMixin, generic.CreateView):
-    model = Thread
-    fields = ('text',)
+class ChatCreateView(generic.CreateView):
+    model = Chat
+    fields = ('title','users','created_by')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
-        form.instance.chat_id = self.kwargs['pk']
         return super().form_valid(form)

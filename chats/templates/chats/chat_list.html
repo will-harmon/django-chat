@@ -1,8 +1,14 @@
 
 
 {% block content %}
-  <h1>Chat List</h1>
-  <div>  </div>
-  <h3><a href="{{ chat.get_absolute_url }}">{{ chat.title }}</a></h3>
-  <p>{{ chat.text }}</p>
+<h1>hey</h1>
+{% for chat in object_list %}
+<form>
+  {% csrf_token %}
+  <a href="{% url 'chats:chat_detail' chat.id %}">{{chat.title}}</a>
+</form>
+  <!-- <h1>Chat List</h1>
+  <p>{{ chat.title }}</p>
+  <p>{{ chat.users }}</p> -->
+{% endfor %}
 {% endblock content %}

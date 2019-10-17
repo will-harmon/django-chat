@@ -7,9 +7,9 @@
     <title></title>
   </head>
   <body class="container">
-    <nav>
-        <button><a href="/chat_detail"></a></button>
-    </nav>
+      <nav>
+        <div><a href="{% url 'chats:chat_list' %}">Chat List</a></div>
+      </nav>
     {% block content %}
     {% endblock %}
   </body>
